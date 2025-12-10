@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Static Web App Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Azure Static Web App Demo</h1>
+            <p class="subtitle">Frontend + Azure Functions Backend</p>
+        </header>
+
+        <main>
+            <section class="info-section">
+                <h2>Was ist Azure Static Web Apps?</h2>
+                <p>
+                    Azure Static Web Apps ist ein Service, der automatisch moderne Webanwendungen 
+                    aus einem GitHub-Repository baut und bereitstellt. Es kombiniert:
+                </p>
+                <ul>
+                    <li>✅ Statische Webseiten (HTML, CSS, JavaScript)</li>
+                    <li>✅ Serverlose Azure Functions (Backend API)</li>
+                    <li>✅ Automatisches CI/CD mit GitHub Actions</li>
+                    <li>✅ Kostenloser SSL-Support</li>
+                    <li>✅ Global verteiltes CDN</li>
+                </ul>
+            </section>
+
+            <section class="demo-section">
+                <h2>Backend-API Demo</h2>
+                <p>Testen Sie die Azure Function Backend-Integration:</p>
+                
+                <div class="api-test">
+                    <button id="testApiBtn" class="btn-primary">API aufrufen</button>
+                    <div id="apiResult" class="result-box"></div>
+                </div>
+
+                <div class="api-test">
+                    <h3>Personalisierte Nachricht</h3>
+                    <input type="text" id="nameInput" placeholder="Ihr Name" class="input-field">
+                    <button id="greetBtn" class="btn-secondary">Begrüßung erhalten</button>
+                    <div id="greetResult" class="result-box"></div>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <h2>Wofür wird es genutzt?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🌐 Web-Apps</h3>
+                        <p>Single-Page Applications (React, Vue, Angular)</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📱 Progressive Web Apps</h3>
+                        <p>Mobile-first Webanwendungen mit Offline-Support</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📝 Blogs & Dokumentation</h3>
+                        <p>Statische Site-Generatoren (Hugo, Jekyll, Gatsby)</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🛍️ E-Commerce</h3>
+                        <p>Online-Shops mit serverlosem Backend</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="architecture-section">
+                <h2>Architektur</h2>
+                <div class="architecture-diagram">
+                    <div class="arch-box">GitHub Repository</div>
+                    <div class="arrow">↓</div>
+                    <div class="arch-box">GitHub Actions (CI/CD)</div>
+                    <div class="arrow">↓</div>
+                    <div class="arch-box">Azure Static Web Apps</div>
+                    <div class="arrow-split">
+                        <div class="split-left">
+                            <div class="arch-box">Frontend (CDN)</div>
+                        </div>
+                        <div class="split-right">
+                            <div class="arch-box">API (Azure Functions)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>M346 - Azure Static Web Apps Demo | Erstellt mit ❤️ für Ihr Team</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
