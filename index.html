@@ -3,96 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure Static Web App Demo</title>
+    <title>Azure Static Web App Demo - M346</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">⚡ Azure Static Web Apps Demo</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="#info" class="nav-link">Info</a></li>
+                <li><a href="#architektur" class="nav-link">Architektur</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>🚀 Azure Static Web App Demo</h1>
-            <p class="subtitle">Frontend + Azure Functions Backend</p>
-        </header>
-
-        <main>
-            <section class="info-section">
-                <h2>Was ist Azure Static Web Apps?</h2>
-                <p>
-                    Azure Static Web Apps ist ein Service, der automatisch moderne Webanwendungen 
-                    aus einem GitHub-Repository baut und bereitstellt. Es kombiniert:
+        <!-- HOME SECTION -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>🚀 Azure Static Web Apps</h1>
+                <p class="hero-subtitle">Moderne Web-Apps mit serverlosem Backend</p>
+                <p class="hero-description">
+                    Eine vollständige Plattform für statische Websites mit integrierter API-Funktionalität,
+                    automatischem CI/CD und globalem CDN - alles aus einer Hand!
                 </p>
-                <ul>
-                    <li>✅ Statische Webseiten (HTML, CSS, JavaScript)</li>
-                    <li>✅ Serverlose Azure Functions (Backend API)</li>
-                    <li>✅ Automatisches CI/CD mit GitHub Actions</li>
-                    <li>✅ Kostenloser SSL-Support</li>
-                    <li>✅ Global verteiltes CDN</li>
-                </ul>
-            </section>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Serverlos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$0</div>
+                        <div class="stat-label">Free Tier</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Verfügbar</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <section class="demo-section">
-                <h2>Backend-API Demo</h2>
-                <p>Testen Sie die Azure Function Backend-Integration:</p>
-                
-                <div class="api-test">
+        <!-- DEMO SECTION -->
+        <section id="demo" class="demo-section">
+            <h2>🎮 Azure Functions Demo</h2>
+            <p class="section-subtitle">Testen Sie die serverlose Backend-Integration in Echtzeit</p>
+            
+            <div class="demo-grid">
+                <!-- Demo 1: Simple Message -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>📨 Einfache Nachricht</h3>
+                        <span class="demo-badge">GET /api/message</span>
+                    </div>
+                    <p>Ruft eine einfache Nachricht vom Backend ab</p>
                     <button id="testApiBtn" class="btn-primary">API aufrufen</button>
                     <div id="apiResult" class="result-box"></div>
                 </div>
 
-                <div class="api-test">
-                    <h3>Personalisierte Nachricht</h3>
+                <!-- Demo 2: Personalized Greeting -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>👋 Personalisierte Begrüßung</h3>
+                        <span class="demo-badge">GET /api/greet</span>
+                    </div>
+                    <p>Erhalten Sie eine zufällige personalisierte Begrüßung</p>
                     <input type="text" id="nameInput" placeholder="Ihr Name" class="input-field">
-                    <button id="greetBtn" class="btn-secondary">Begrüßung erhalten</button>
+                    <button id="greetBtn" class="btn-success">Begrüßung erhalten</button>
                     <div id="greetResult" class="result-box"></div>
                 </div>
-            </section>
 
-            <section class="features-section">
-                <h2>Wofür wird es genutzt?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>🌐 Web-Apps</h3>
-                        <p>Single-Page Applications (React, Vue, Angular)</p>
+                <!-- Demo 3: Time Info -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>⏰ Server-Zeit</h3>
+                        <span class="demo-badge">GET /api/time</span>
                     </div>
-                    <div class="feature-card">
-                        <h3>📱 Progressive Web Apps</h3>
-                        <p>Mobile-first Webanwendungen mit Offline-Support</p>
+                    <p>Zeigt die aktuelle Server-Zeit und Zeitzone</p>
+                    <button id="timeBtn" class="btn-info">Zeit abrufen</button>
+                    <div id="timeResult" class="result-box"></div>
+                </div>
+
+                <!-- Demo 4: Random Number -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>🎲 Zufallszahl</h3>
+                        <span class="demo-badge">GET /api/random</span>
                     </div>
-                    <div class="feature-card">
-                        <h3>📝 Blogs & Dokumentation</h3>
-                        <p>Statische Site-Generatoren (Hugo, Jekyll, Gatsby)</p>
+                    <p>Generiert eine sichere Zufallszahl</p>
+                    <div class="input-group">
+                        <input type="number" id="minInput" placeholder="Min" value="1" class="input-field-small">
+                        <input type="number" id="maxInput" placeholder="Max" value="100" class="input-field-small">
                     </div>
-                    <div class="feature-card">
-                        <h3>🛍️ E-Commerce</h3>
-                        <p>Online-Shops mit serverlosem Backend</p>
+                    <button id="randomBtn" class="btn-warning">Zahl generieren</button>
+                    <div id="randomResult" class="result-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFO SECTION -->
+        <section id="info" class="info-section">
+            <h2>📚 Was ist Azure Static Web Apps?</h2>
+            
+            <div class="info-content">
+                <div class="info-box">
+                    <h3>🎯 Definition</h3>
+                    <p>
+                        Azure Static Web Apps ist ein vollständig verwalteter Service von Microsoft Azure, 
+                        der moderne Webanwendungen automatisch aus einem Git-Repository erstellt und bereitstellt. 
+                        Der Service kombiniert statisches Website-Hosting mit serverlosem Backend in einer 
+                        integrierten Lösung.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🔑 Hauptmerkmale</h3>
+                    <ul class="feature-list">
+                        <li><strong>Automatisches Deployment:</strong> CI/CD via GitHub Actions oder Azure DevOps</li>
+                        <li><strong>Globales CDN:</strong> Schnelle Auslieferung weltweit durch Azure's CDN</li>
+                        <li><strong>Serverlose APIs:</strong> Integrierte Azure Functions ohne zusätzliche Konfiguration</li>
+                        <li><strong>Kostenlos SSL:</strong> Automatische HTTPS-Zertifikate für alle Domains</li>
+                        <li><strong>Staging-Umgebungen:</strong> Automatische Preview-URLs für Pull Requests</li>
+                        <li><strong>Custom Domains:</strong> Eigene Domains einfach verbinden</li>
+                        <li><strong>Authentifizierung:</strong> Integrierte Auth-Provider (GitHub, Azure AD, etc.)</li>
+                        <li><strong>API-Routing:</strong> Automatisches Routing zwischen Frontend und Backend</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>💼 Einsatzgebiete</h3>
+                    <div class="use-cases-grid">
+                        <div class="use-case">
+                            <div class="use-case-icon">🌐</div>
+                            <h4>Single-Page Applications</h4>
+                            <p>React, Vue, Angular, Svelte Apps mit API-Backend</p>
+                        </div>
+                        <div class="use-case">
+                            <div class="use-case-icon">📱</div>
+                            <h4>Progressive Web Apps</h4>
+                            <p>Mobile-first Anwendungen mit Offline-Funktionalität</p>
+                        </div>
+                        <div class="use-case">
+                            <div class="use-case-icon">📝</div>
+                            <h4>Blogs & Dokumentation</h4>
+                            <p>Statische Site-Generatoren wie Hugo, Jekyll, Gatsby</p>
+                        </div>
+                        <div class="use-case">
+                            <div class="use-case-icon">🛍️</div>
+                            <h4>E-Commerce Frontends</h4>
+                            <p>Online-Shop Interfaces mit Backend-Integration</p>
+                        </div>
+                        <div class="use-case">
+                            <div class="use-case-icon">📊</div>
+                            <h4>Dashboards</h4>
+                            <p>Daten-Visualisierungen mit API-Anbindung</p>
+                        </div>
+                        <div class="use-case">
+                            <div class="use-case-icon">🎓</div>
+                            <h4>Landing Pages</h4>
+                            <p>Marketing-Websites mit Formular-Backend</p>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            <section class="architecture-section">
-                <h2>Architektur</h2>
-                <div class="architecture-diagram">
-                    <div class="arch-box">GitHub Repository</div>
-                    <div class="arrow">↓</div>
-                    <div class="arch-box">GitHub Actions (CI/CD)</div>
-                    <div class="arrow">↓</div>
-                    <div class="arch-box">Azure Static Web Apps</div>
-                    <div class="arrow-split">
-                        <div class="split-left">
-                            <div class="arch-box">Frontend (CDN)</div>
+                <div class="info-box">
+                    <h3>💰 Preismodell</h3>
+                    <div class="pricing-table">
+                        <div class="pricing-tier">
+                            <h4>Free Tier</h4>
+                            <div class="price">$0/Monat</div>
+                            <ul>
+                                <li>✅ 100 GB Bandbreite</li>
+                                <li>✅ 0.5 GB Speicher</li>
+                                <li>✅ 2 Custom Domains</li>
+                                <li>✅ Staging-Umgebungen</li>
+                                <li>✅ SSL-Zertifikate</li>
+                                <li>✅ Azure Functions (500K Requests)</li>
+                            </ul>
+                            <p class="tier-note">Perfekt für Demos und kleine Projekte!</p>
                         </div>
-                        <div class="split-right">
-                            <div class="arch-box">API (Azure Functions)</div>
+                        <div class="pricing-tier standard">
+                            <h4>Standard Tier</h4>
+                            <div class="price">Pay-as-you-go</div>
+                            <ul>
+                                <li>✅ Unbegrenzte Bandbreite</li>
+                                <li>✅ Mehr Speicher</li>
+                                <li>✅ Mehr Custom Domains</li>
+                                <li>✅ SLA Garantien</li>
+                                <li>✅ Erweiterte Features</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
 
-        <footer>
-            <p>M346 - Azure Static Web Apps Demo | Erstellt mit ❤️ für Ihr Team</p>
-        </footer>
+                <div class="info-box">
+                    <h3>⚖️ Vergleich mit Alternativen</h3>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Azure Static Web Apps</th>
+                                    <th>GitHub Pages</th>
+                                    <th>Netlify</th>
+                                    <th>Vercel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Backend API</td>
+                                    <td>✅ Integriert (Functions)</td>
+                                    <td>❌</td>
+                                    <td>✅ (Functions)</td>
+                                    <td>✅ (Serverless)</td>
+                                </tr>
+                                <tr>
+                                    <td>CI/CD</td>
+                                    <td>✅ GitHub Actions</td>
+                                    <td>✅ Automatisch</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr>
+                                    <td>Staging</td>
+                                    <td>✅ Automatisch (PR)</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr>
+                                    <td>SSL</td>
+                                    <td>✅ Kostenlos</td>
+                                    <td>✅ Kostenlos</td>
+                                    <td>✅ Kostenlos</td>
+                                    <td>✅ Kostenlos</td>
+                                </tr>
+                                <tr>
+                                    <td>Auth</td>
+                                    <td>✅ Integriert</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>Free Tier</td>
+                                    <td>✅ Großzügig</td>
+                                    <td>✅ Unbegrenzt</td>
+                                    <td>✅ Begrenzt</td>
+                                    <td>✅ Begrenzt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>✅ Vorteile</h3>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <ul>
+                                <li>🚀 Sehr schnelles Setup (unter 10 Minuten)</li>
+                                <li>💸 Großzügiger kostenloser Free Tier</li>
+                                <li>🔄 Vollautomatisches CI/CD</li>
+                                <li>🌍 Globales CDN für schnelle Ladezeiten</li>
+                                <li>🔐 Integrierte Authentifizierung</li>
+                                <li>⚡ Serverless Functions ohne Extra-Setup</li>
+                                <li>🔒 Automatische SSL-Zertifikate</li>
+                                <li>📊 Preview-Umgebungen für PRs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>⚠️ Zu beachten</h3>
+                    <div class="pros-cons">
+                        <div class="cons">
+                            <ul>
+                                <li>Primär für GitHub optimiert (Azure DevOps auch möglich)</li>
+                                <li>Functions nur in bestimmten Regionen verfügbar</li>
+                                <li>Noch relativ neuer Service (seit 2020)</li>
+                                <li>Weniger Plugins als etablierte Alternativen</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARCHITECTURE SECTION -->
+        <section id="architektur" class="architecture-section">
+            <h2>🏗️ Architektur & Workflow</h2>
+            
+            <div class="arch-content">
+                <div class="workflow-diagram">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">💻</div>
+                        <h4>Entwicklung</h4>
+                        <p>Code in GitHub Repository pushen</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">🔄</div>
+                        <h4>CI/CD</h4>
+                        <p>GitHub Actions Build & Test</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">🚀</div>
+                        <h4>Deployment</h4>
+                        <p>Automatisch zu Azure deployen</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">🌍</div>
+                        <h4>Live</h4>
+                        <p>Global über CDN verfügbar</p>
+                    </div>
+                </div>
+
+                <div class="arch-diagram-detailed">
+                    <h3>Detaillierte Architektur</h3>
+                    <div class="arch-layers">
+                        <div class="arch-layer">
+                            <h4>📱 Client Layer</h4>
+                            <div class="arch-box">Browser / Mobile App</div>
+                            <p>User Interface</p>
+                        </div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="arch-layer">
+                            <h4>🌐 CDN Layer</h4>
+                            <div class="arch-box">Azure CDN</div>
+                            <p>Globale Content Delivery</p>
+                        </div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="arch-layer split">
+                            <div class="arch-split-item">
+                                <h4>🎨 Frontend</h4>
+                                <div class="arch-box">Static Assets</div>
+                                <p>HTML, CSS, JS</p>
+                            </div>
+                            <div class="arch-split-item">
+                                <h4>⚡ Backend</h4>
+                                <div class="arch-box">Azure Functions</div>
+                                <p>Serverless API</p>
+                            </div>
+                        </div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="arch-layer">
+                            <h4>💾 Data Layer (Optional)</h4>
+                            <div class="arch-box">Azure Cosmos DB / SQL</div>
+                            <p>Datenbank-Services</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <h3>🛠️ Technologie-Stack dieser Demo</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <strong>Frontend:</strong>
+                            <span>HTML5, CSS3, JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Backend:</strong>
+                            <span>Azure Functions (Node.js)</span>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Hosting:</strong>
+                            <span>Azure Static Web Apps</span>
+                        </div>
+                        <div class="tech-item">
+                            <strong>CI/CD:</strong>
+                            <span>GitHub Actions</span>
+                        </div>
+                        <div class="tech-item">
+                            <strong>CDN:</strong>
+                            <span>Azure CDN</span>
+                        </div>
+                        <div class="tech-item">
+                            <strong>SSL:</strong>
+                            <span>Automatisch (Let's Encrypt)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deployment-info">
+                    <h3>📦 Deployment-Prozess</h3>
+                    <ol class="deployment-steps">
+                        <li>
+                            <strong>Code Push:</strong> Entwickler pusht Code zu GitHub
+                        </li>
+                        <li>
+                            <strong>Trigger:</strong> GitHub Actions Workflow wird automatisch gestartet
+                        </li>
+                        <li>
+                            <strong>Build:</strong> Frontend-Assets werden kompiliert und optimiert
+                        </li>
+                        <li>
+                            <strong>Functions Deploy:</strong> Azure Functions werden hochgeladen
+                        </li>
+                        <li>
+                            <strong>CDN Update:</strong> Statische Assets werden zum CDN deployed
+                        </li>
+                        <li>
+                            <strong>Validation:</strong> Health Checks und Tests werden ausgeführt
+                        </li>
+                        <li>
+                            <strong>Live:</strong> Website ist global verfügbar (typisch 2-3 Minuten)
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>📚 M346 Projekt</h4>
+                <p>Azure Static Web Apps Demo</p>
+                <p>Dezember 2025</p>
+            </div>
+            <div class="footer-section">
+                <h4>🔗 Links</h4>
+                <a href="https://github.com/Lerry707/m346-azure-demo" target="_blank">GitHub Repository</a>
+                <a href="https://docs.microsoft.com/azure/static-web-apps/" target="_blank">Azure Docs</a>
+            </div>
+            <div class="footer-section">
+                <h4>💡 Technologien</h4>
+                <p>Azure • GitHub Actions • Functions</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Erstellt mit ❤️ für das M346-Team</p>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>

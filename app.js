@@ -1,84 +1,254 @@
-// Azure Static Web App Demo - Frontend JavaScript
+// Azure Static Web App Demo - Enhanced JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
-    // API Test Button
-    const testApiBtn = document.getElementById('testApiBtn');
-    const apiResult = document.getElementById('apiResult');
+    // Smooth scrolling for navigation
+    initNavigation();
+    
+    // Initialize all API demos
+    initMessageDemo();
+    initGreetDemo();
+    initTimeDemo();
+    initRandomDemo();
+});
 
-    testApiBtn.addEventListener('click', async () => {
-        showLoading(apiResult, 'API wird aufgerufen...');
+// Navigation
+function initNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update active link
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            }
+        });
+    });
+    
+    // Update active link on scroll
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section[id]');
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+}
+
+// Demo 1: Simple Message API
+function initMessageDemo() {
+    const btn = document.getElementById('testApiBtn');
+    const resultBox = document.getElementById('apiResult');
+    
+    btn.addEventListener('click', async () => {
+        showLoading(resultBox, 'API wird aufgerufen...');
         
         try {
             const response = await fetch('/api/message');
             const data = await response.json();
             
             if (response.ok) {
-                showSuccess(apiResult, `
+                showSuccess(resultBox, `
                     <strong>✅ Erfolg!</strong><br>
                     <strong>Nachricht:</strong> ${data.message}<br>
                     <strong>Zeitstempel:</strong> ${new Date(data.timestamp).toLocaleString('de-DE')}<br>
-                    <strong>Backend:</strong> Azure Functions
+                    <strong>Backend:</strong> ${data.backend}<br>
+                    <strong>Status:</strong> ${data.status}
                 `);
             } else {
-                showError(apiResult, 'Fehler beim API-Aufruf: ' + data.message);
+                showError(resultBox, 'Fehler beim API-Aufruf: ' + data.message);
             }
         } catch (error) {
-            showError(apiResult, `
-                ⚠️ API-Endpunkt noch nicht verfügbar.<br>
-                <small>Hinweis: Deployen Sie die App zu Azure, damit die Functions funktionieren.</small><br>
+            showError(resultBox, `
+                ⚠️ API-Endpunkt nicht erreichbar.<br>
                 <small>Fehler: ${error.message}</small>
             `);
         }
     });
+}
 
-    // Greet Button
-    const greetBtn = document.getElementById('greetBtn');
-    const nameInput = document.getElementById('nameInput');
-    const greetResult = document.getElementById('greetResult');
-
-    greetBtn.addEventListener('click', async () => {
-        const name = nameInput.value.trim();
+// Demo 2: Personalized Greeting
+function initGreetDemo() {
+    const btn = document.getElementById('greetBtn');
+    const input = document.getElementById('nameInput');
+    const resultBox = document.getElementById('greetResult');
+    
+    btn.addEventListener('click', async () => {
+        const name = input.value.trim();
         
         if (!name) {
-            showError(greetResult, 'Bitte geben Sie einen Namen ein!');
+            showError(resultBox, 'Bitte geben Sie einen Namen ein!');
             return;
         }
-
-        showLoading(greetResult, 'Nachricht wird erstellt...');
+        
+        showLoading(resultBox, 'Begrüßung wird erstellt...');
         
         try {
             const response = await fetch(`/api/greet?name=${encodeURIComponent(name)}`);
             const data = await response.json();
             
             if (response.ok) {
-                showSuccess(greetResult, `
-                    <strong>🎉 ${data.greeting}</strong><br>
-                    <small>Erstellt am: ${new Date(data.timestamp).toLocaleString('de-DE')}</small>
+                showSuccess(resultBox, `
+                    <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
+                        ${data.greeting}
+                    </div>
+                    <small>Erstellt am: ${new Date(data.timestamp).toLocaleString('de-DE')}</small><br>
+                    <small>${data.message}</small>
                 `);
             } else {
-                showError(greetResult, 'Fehler: ' + data.message);
+                showError(resultBox, 'Fehler: ' + data.message);
             }
         } catch (error) {
-            showError(greetResult, `
-                ⚠️ API-Endpunkt noch nicht verfügbar.<br>
-                <small>Hinweis: Nach dem Deployment zu Azure wird diese Funktion aktiviert.</small><br>
+            showError(resultBox, `
+                ⚠️ API-Endpunkt nicht erreichbar.<br>
                 <small>Fehler: ${error.message}</small>
             `);
         }
     });
-
-    // Enter key support for name input
-    nameInput.addEventListener('keypress', (e) => {
+    
+    // Enter key support
+    input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            greetBtn.click();
+            btn.click();
         }
     });
-});
+}
 
-// Helper functions for result display
+// Demo 3: Server Time
+function initTimeDemo() {
+    const btn = document.getElementById('timeBtn');
+    const resultBox = document.getElementById('timeResult');
+    
+    btn.addEventListener('click', async () => {
+        showLoading(resultBox, 'Zeit wird abgerufen...');
+        
+        try {
+            const response = await fetch('/api/time');
+            const data = await response.json();
+            
+            if (response.ok) {
+                showSuccess(resultBox, `
+                    <div style="text-align: center;">
+                        <div style="font-size: 2em; font-weight: bold; margin: 15px 0;">
+                            ⏰ ${data.time}
+                        </div>
+                        <div style="font-size: 1.2em; margin-bottom: 10px;">
+                            📅 ${data.date}
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #059669;">
+                            <strong>Timezone:</strong> ${data.timezone}<br>
+                            <strong>Unix Timestamp:</strong> ${data.unix}<br>
+                            <strong>ISO:</strong> ${data.timestamp}
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                            ${data.message}
+                        </div>
+                    </div>
+                `);
+            } else {
+                showError(resultBox, 'Fehler beim Abrufen der Zeit');
+            }
+        } catch (error) {
+            showError(resultBox, `
+                ⚠️ API-Endpunkt nicht erreichbar.<br>
+                <small>Fehler: ${error.message}</small>
+            `);
+        }
+    });
+}
+
+// Demo 4: Random Number Generator
+function initRandomDemo() {
+    const btn = document.getElementById('randomBtn');
+    const minInput = document.getElementById('minInput');
+    const maxInput = document.getElementById('maxInput');
+    const resultBox = document.getElementById('randomResult');
+    
+    btn.addEventListener('click', async () => {
+        const min = parseInt(minInput.value) || 1;
+        const max = parseInt(maxInput.value) || 100;
+        
+        if (min >= max) {
+            showError(resultBox, 'Minimum muss kleiner als Maximum sein!');
+            return;
+        }
+        
+        showLoading(resultBox, 'Zufallszahl wird generiert...');
+        
+        try {
+            const response = await fetch(`/api/random?min=${min}&max=${max}`);
+            const data = await response.json();
+            
+            if (response.ok) {
+                showSuccess(resultBox, `
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em; font-weight: bold; color: #0078d4; margin: 20px 0;">
+                            🎲 ${data.number}
+                        </div>
+                        <div style="font-size: 1.1em; margin: 15px 0;">
+                            ${data.message}
+                        </div>
+                        <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 8px;">
+                            <strong>Bereich:</strong> ${data.min} - ${data.max}<br>
+                            <strong>Generiert am:</strong> ${new Date(data.timestamp).toLocaleTimeString('de-DE')}
+                        </div>
+                    </div>
+                `);
+                
+                // Animation effect
+                const numberDisplay = resultBox.querySelector('div[style*="font-size: 3em"]');
+                if (numberDisplay) {
+                    numberDisplay.style.transform = 'scale(0)';
+                    setTimeout(() => {
+                        numberDisplay.style.transition = 'transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                        numberDisplay.style.transform = 'scale(1)';
+                    }, 100);
+                }
+            } else {
+                showError(resultBox, data.error || 'Fehler beim Generieren der Zufallszahl');
+            }
+        } catch (error) {
+            showError(resultBox, `
+                ⚠️ API-Endpunkt nicht erreichbar.<br>
+                <small>Fehler: ${error.message}</small>
+            `);
+        }
+    });
+}
+
+// Helper Functions
 function showLoading(element, message) {
     element.className = 'result-box show loading';
-    element.innerHTML = `<span>⏳ ${message}</span>`;
+    element.innerHTML = `<div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 20px; height: 20px; border: 3px solid #3b82f6; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <span>${message}</span>
+    </div>`;
+    
+    // Add spin animation if not exists
+    if (!document.querySelector('#spin-animation')) {
+        const style = document.createElement('style');
+        style.id = 'spin-animation';
+        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+        document.head.appendChild(style);
+    }
 }
 
 function showSuccess(element, message) {
@@ -90,3 +260,17 @@ function showError(element, message) {
     element.className = 'result-box show error';
     element.innerHTML = message;
 }
+
+// Add some fun interactions
+document.addEventListener('DOMContentLoaded', () => {
+    // Add hover effect to demo cards
+    const demoCards = document.querySelectorAll('.demo-card');
+    demoCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.borderColor = '#0078d4';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.borderColor = '#e0e0e0';
+        });
+    });
+});
