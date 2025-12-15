@@ -7,6 +7,7 @@ module.exports = async function (context, req) {
     context.log('Time API called');
 
     const now = new Date();
+    const startTime = Date.now();
     
     context.res = {
         status: 200,
@@ -24,7 +25,16 @@ module.exports = async function (context, req) {
             time: now.toLocaleTimeString('de-DE'),
             timezone: 'UTC',
             unix: Math.floor(now.getTime() / 1000),
-            message: 'Server-Zeit von Azure Functions'
+            message: 'Server-Zeit von Azure Functions',
+            // BEWEIS dass es in Azure läuft:
+            executionInfo: {
+                functionName: context.executionContext.functionName,
+                invocationId: context.executionContext.invocationId,
+                executionTime: Date.now() - startTime + 'ms',
+                runtime: 'Node.js ' + process.version,
+                platform: process.platform,
+                runningIn: 'Azure Functions Container'
+            }
         }
     };
 };
