@@ -158,6 +158,21 @@ function initTimeDemo() {
                             <strong>Unix Timestamp:</strong> ${data.unix}<br>
                             <strong>ISO:</strong> ${data.timestamp}
                         </div>
+                        ${data.executionInfo ? `
+                        <div style="margin-top: 15px; padding: 15px; background: rgba(5, 150, 105, 0.1); border-radius: 8px; border-left: 4px solid #059669;">
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #059669;">
+                                🐳 Azure Container Informationen
+                            </div>
+                            <div style="font-size: 0.9em; text-align: left;">
+                                <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
+                                <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
+                                <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
+                                <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
+                                <strong>Platform:</strong> ${data.executionInfo.platform}<br>
+                                <strong>Running In:</strong> <span style="color: #059669; font-weight: bold;">${data.executionInfo.runningIn}</span>
+                            </div>
+                        </div>
+                        ` : ''}
                         <div style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
                             ${data.message}
                         </div>
