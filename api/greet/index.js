@@ -5,6 +5,7 @@
  */
 module.exports = async function (context, req) {
     context.log('Greet API called');
+    const startTime = Date.now();
 
     // Get name from query parameter or request body
     const name = (req.query.name || (req.body && req.body.name)) || 'Besucher';
@@ -30,9 +31,8 @@ module.exports = async function (context, req) {
             name: name,
             timestamp: new Date().toISOString(),
             message: 'Personalisierte Begrüßung von Azure Functions',
-            backend: 'Azure Functions'
-        },
-        executionInfo: {
+            backend: 'Azure Functions',
+            executionInfo: {
                 functionName: context.executionContext.functionName,
                 invocationId: context.executionContext.invocationId,
                 executionTime: Date.now() - startTime + 'ms',
@@ -40,5 +40,6 @@ module.exports = async function (context, req) {
                 platform: process.platform,
                 runningIn: 'Azure Functions Container'
             }
+        }
     };
 };

@@ -5,6 +5,7 @@
  */
 module.exports = async function (context, req) {
     context.log('Message API called');
+    const startTime = Date.now();
 
     context.res = {
         status: 200,
@@ -16,9 +17,8 @@ module.exports = async function (context, req) {
             timestamp: new Date().toISOString(),
             info: 'Diese Nachricht kommt direkt vom Backend',
             backend: 'Azure Functions',
-            status: 'success'
-        },
-        executionInfo: {
+            status: 'success',
+            executionInfo: {
                 functionName: context.executionContext.functionName,
                 invocationId: context.executionContext.invocationId,
                 executionTime: Date.now() - startTime + 'ms',
@@ -26,5 +26,6 @@ module.exports = async function (context, req) {
                 platform: process.platform,
                 runningIn: 'Azure Functions Container'
             }
+        }
     };
 };

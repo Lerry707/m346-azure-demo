@@ -5,6 +5,7 @@
  */
 module.exports = async function (context, req) {
     context.log('Random number API called');
+    const startTime = Date.now();
 
     const min = parseInt(req.query.min) || 1;
     const max = parseInt(req.query.max) || 100;
@@ -33,9 +34,8 @@ module.exports = async function (context, req) {
             min: min,
             max: max,
             timestamp: new Date().toISOString(),
-            message: `Zufallszahl zwischen ${min} und ${max}`
-        },
-        executionInfo: {
+            message: `Zufallszahl zwischen ${min} und ${max}`,
+            executionInfo: {
                 functionName: context.executionContext.functionName,
                 invocationId: context.executionContext.invocationId,
                 executionTime: Date.now() - startTime + 'ms',
@@ -43,5 +43,6 @@ module.exports = async function (context, req) {
                 platform: process.platform,
                 runningIn: 'Azure Functions Container'
             }
+        }
     };
 };
