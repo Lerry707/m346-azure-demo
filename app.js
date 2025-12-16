@@ -114,7 +114,7 @@ function initGreetDemo() {
             return;
         }
         
-        showLoading(resultBox, 'Begrüßung wird erstellt...');
+        showLoading(resultBox, 'Begrüssung wird erstellt...');
         
         try {
             const response = await fetch(`/api/greet?name=${encodeURIComponent(name)}`);

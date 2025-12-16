@@ -30,7 +30,7 @@ module.exports = async function (context, req) {
             greeting: randomGreeting,
             name: name,
             timestamp: new Date().toISOString(),
-            message: 'Personalisierte Begrüßung von Azure Functions',
+            message: 'Personalisierte Begrüssung von Azure Functions',
             backend: 'Azure Functions',
             executionInfo: {
                 functionName: context.executionContext.functionName,
