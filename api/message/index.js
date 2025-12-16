@@ -13,7 +13,7 @@ module.exports = async function (context, req) {
             'Content-Type': 'application/json'
         },
         body: {
-            message: 'Hallo von Azure Functions! 🚀',
+            message: 'Hallo von Azure Functions',
             timestamp: new Date().toISOString(),
             info: 'Diese Nachricht kommt direkt vom Backend',
             backend: 'Azure Functions',

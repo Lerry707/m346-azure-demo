@@ -12,11 +12,11 @@ module.exports = async function (context, req) {
 
     // Create personalized greeting
     const greetings = [
-        `Willkommen, ${name}! 👋`,
-        `Hallo ${name}! Schön, dass du da bist! 🎉`,
-        `Grüezi ${name}! 🇨🇭`,
-        `Servus ${name}! 🎊`,
-        `Hey ${name}! Wie geht's? 😊`
+        `Willkommen, ${name}`,
+        `Hallo ${name}! Schön, dass du da bist`,
+        `Grüezi ${name}`,
+        `Servus ${name}`,
+        `Hey ${name}! Wie geht's?`
     ];
 
     const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];

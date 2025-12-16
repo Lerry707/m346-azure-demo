@@ -67,7 +67,7 @@ function initMessageDemo() {
             
             if (response.ok) {
                 showSuccess(resultBox, `
-                    <strong>✅ Erfolg!</strong><br>
+                    <strong>[ERFOLG]</strong><br>
                     <strong>Nachricht:</strong> ${data.message}<br>
                     <strong>Zeitstempel:</strong> ${new Date(data.timestamp).toLocaleString('de-DE')}<br>
                     <strong>Backend:</strong> ${data.backend}<br>
@@ -75,7 +75,7 @@ function initMessageDemo() {
                     ${data.executionInfo ? `
                     <div style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 8px; border-left: 4px solid #667eea;">
                         <div style="font-weight: bold; margin-bottom: 10px; color: #667eea;">
-                            🐳 Azure Container Informationen
+                            [Azure Container] Informationen
                         </div>
                         <div style="font-size: 0.9em; text-align: left;">
                             <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
@@ -93,7 +93,7 @@ function initMessageDemo() {
             }
         } catch (error) {
             showError(resultBox, `
-                ⚠️ API-Endpunkt nicht erreichbar.<br>
+                [WARNUNG] API-Endpunkt nicht erreichbar.<br>
                 <small>Fehler: ${error.message}</small>
             `);
         }
@@ -130,7 +130,7 @@ function initGreetDemo() {
                     ${data.executionInfo ? `
                     <div style="margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 4px solid #10b981;">
                         <div style="font-weight: bold; margin-bottom: 10px; color: #10b981;">
-                            🐳 Azure Container Informationen
+                            [Azure Container] Informationen
                         </div>
                         <div style="font-size: 0.9em; text-align: left;">
                             <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
@@ -148,7 +148,7 @@ function initGreetDemo() {
             }
         } catch (error) {
             showError(resultBox, `
-                ⚠️ API-Endpunkt nicht erreichbar.<br>
+                [WARNUNG] API-Endpunkt nicht erreichbar.<br>
                 <small>Fehler: ${error.message}</small>
             `);
         }
@@ -178,10 +178,10 @@ function initTimeDemo() {
                 showSuccess(resultBox, `
                     <div style="text-align: center;">
                         <div style="font-size: 2em; font-weight: bold; margin: 15px 0;">
-                            ⏰ ${data.time}
+                            [Zeit] ${data.time}
                         </div>
                         <div style="font-size: 1.2em; margin-bottom: 10px;">
-                            📅 ${data.date}
+                            [Datum] ${data.date}
                         </div>
                         <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #059669;">
                             <strong>Timezone:</strong> ${data.timezone}<br>
@@ -191,7 +191,7 @@ function initTimeDemo() {
                         ${data.executionInfo ? `
                         <div style="margin-top: 15px; padding: 15px; background: rgba(5, 150, 105, 0.1); border-radius: 8px; border-left: 4px solid #059669;">
                             <div style="font-weight: bold; margin-bottom: 10px; color: #059669;">
-                                🐳 Azure Container Informationen
+                                [Azure Container] Informationen
                             </div>
                             <div style="font-size: 0.9em; text-align: left;">
                                 <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
@@ -213,7 +213,7 @@ function initTimeDemo() {
             }
         } catch (error) {
             showError(resultBox, `
-                ⚠️ API-Endpunkt nicht erreichbar.<br>
+                [WARNUNG] API-Endpunkt nicht erreichbar.<br>
                 <small>Fehler: ${error.message}</small>
             `);
         }
@@ -246,7 +246,7 @@ function initRandomDemo() {
                 showSuccess(resultBox, `
                     <div style="text-align: center;">
                         <div style="font-size: 3em; font-weight: bold; color: #0078d4; margin: 20px 0;">
-                            🎲 ${data.number}
+                            [Zufallszahl] ${data.number}
                         </div>
                         <div style="font-size: 1.1em; margin: 15px 0;">
                             ${data.message}
@@ -258,7 +258,7 @@ function initRandomDemo() {
                         ${data.executionInfo ? `
                         <div style="margin-top: 15px; padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; border-left: 4px solid #f59e0b; text-align: left;">
                             <div style="font-weight: bold; margin-bottom: 10px; color: #f59e0b;">
-                                🐳 Azure Container Informationen
+                                [Azure Container] Informationen
                             </div>
                             <div style="font-size: 0.9em;">
                                 <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
@@ -287,7 +287,7 @@ function initRandomDemo() {
             }
         } catch (error) {
             showError(resultBox, `
-                ⚠️ API-Endpunkt nicht erreichbar.<br>
+                [WARNUNG] API-Endpunkt nicht erreichbar.<br>
                 <small>Fehler: ${error.message}</small>
             `);
         }
