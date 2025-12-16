@@ -38,7 +38,6 @@ module.exports = async function (context, req) {
             executionInfo: {
                 functionName: context.executionContext.functionName,
                 invocationId: context.executionContext.invocationId,
-                executionTime: Date.now() - startTime + 'ms',
                 runtime: 'Node.js ' + process.version,
                 platform: process.platform,
                 runningIn: 'Azure Functions Container'
