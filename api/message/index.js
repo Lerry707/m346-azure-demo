@@ -17,6 +17,14 @@ module.exports = async function (context, req) {
             info: 'Diese Nachricht kommt direkt vom Backend',
             backend: 'Azure Functions',
             status: 'success'
-        }
+        },
+        executionInfo: {
+                functionName: context.executionContext.functionName,
+                invocationId: context.executionContext.invocationId,
+                executionTime: Date.now() - startTime + 'ms',
+                runtime: 'Node.js ' + process.version,
+                platform: process.platform,
+                runningIn: 'Azure Functions Container'
+            }
     };
 };

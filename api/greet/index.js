@@ -31,6 +31,14 @@ module.exports = async function (context, req) {
             timestamp: new Date().toISOString(),
             message: 'Personalisierte Begrüßung von Azure Functions',
             backend: 'Azure Functions'
-        }
+        },
+        executionInfo: {
+                functionName: context.executionContext.functionName,
+                invocationId: context.executionContext.invocationId,
+                executionTime: Date.now() - startTime + 'ms',
+                runtime: 'Node.js ' + process.version,
+                platform: process.platform,
+                runningIn: 'Azure Functions Container'
+            }
     };
 };
