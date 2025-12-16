@@ -325,11 +325,11 @@ section h2 {
 
 /* Buttons */
 .btn-primary, .btn-success, .btn-info, .btn-warning {
-    padding: 1.25rem 2.5rem;
-    font-size: 1.125rem;
+    padding: 1.5rem 3rem;
+    font-size: 1.25rem;
     font-weight: 600;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
@@ -338,23 +338,11 @@ section h2 {
     overflow: hidden;
     letter-spacing: 0.02em;
     box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+    min-height: 60px;
 }
 
 .btn-primary:active, .btn-success:active, .btn-info:active, .btn-warning:active {
     transform: translateY(0) scale(0.98);
-}
-
-.btn-primary, .btn-success, .btn-info, .btn-warning::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
 }
 
 .btn-primary:hover::before, .btn-success:hover::before, .btn-info:hover::before, .btn-warning:hover::before {
