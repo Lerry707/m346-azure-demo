@@ -72,6 +72,21 @@ function initMessageDemo() {
                     <strong>Zeitstempel:</strong> ${new Date(data.timestamp).toLocaleString('de-DE')}<br>
                     <strong>Backend:</strong> ${data.backend}<br>
                     <strong>Status:</strong> ${data.status}
+                    ${data.executionInfo ? `
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 8px; border-left: 4px solid #667eea;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #667eea;">
+                            🐳 Azure Container Informationen
+                        </div>
+                        <div style="font-size: 0.9em; text-align: left;">
+                            <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
+                            <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
+                            <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
+                            <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
+                            <strong>Platform:</strong> ${data.executionInfo.platform}<br>
+                            <strong>Running In:</strong> <span style="color: #667eea; font-weight: bold;">${data.executionInfo.runningIn}</span>
+                        </div>
+                    </div>
+                    ` : ''}
                 `);
             } else {
                 showError(resultBox, 'Fehler beim API-Aufruf: ' + data.message);
@@ -112,6 +127,21 @@ function initGreetDemo() {
                     </div>
                     <small>Erstellt am: ${new Date(data.timestamp).toLocaleString('de-DE')}</small><br>
                     <small>${data.message}</small>
+                    ${data.executionInfo ? `
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 4px solid #10b981;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #10b981;">
+                            🐳 Azure Container Informationen
+                        </div>
+                        <div style="font-size: 0.9em; text-align: left;">
+                            <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
+                            <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
+                            <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
+                            <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
+                            <strong>Platform:</strong> ${data.executionInfo.platform}<br>
+                            <strong>Running In:</strong> <span style="color: #10b981; font-weight: bold;">${data.executionInfo.runningIn}</span>
+                        </div>
+                    </div>
+                    ` : ''}
                 `);
             } else {
                 showError(resultBox, 'Fehler: ' + data.message);
@@ -225,6 +255,21 @@ function initRandomDemo() {
                             <strong>Bereich:</strong> ${data.min} - ${data.max}<br>
                             <strong>Generiert am:</strong> ${new Date(data.timestamp).toLocaleTimeString('de-DE')}
                         </div>
+                        ${data.executionInfo ? `
+                        <div style="margin-top: 15px; padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; border-left: 4px solid #f59e0b; text-align: left;">
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #f59e0b;">
+                                🐳 Azure Container Informationen
+                            </div>
+                            <div style="font-size: 0.9em;">
+                                <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
+                                <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
+                                <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
+                                <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
+                                <strong>Platform:</strong> ${data.executionInfo.platform}<br>
+                                <strong>Running In:</strong> <span style="color: #f59e0b; font-weight: bold;">${data.executionInfo.runningIn}</span>
+                            </div>
+                        </div>
+                        ` : ''}
                     </div>
                 `);
                 
