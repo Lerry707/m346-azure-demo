@@ -1,60 +1,19 @@
 // Azure Static Web App Demo - Enhanced JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scrolling for navigation
-    initNavigation();
-    
-    // Initialize all API demos
-    initMessageDemo();
-    initGreetDemo();
-    initTimeDemo();
-    initRandomDemo();
+
+    initMessage();
+    initGreet();
+    initTime();
+    initRandom();
 });
 
-// Navigation
-function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Update active link
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-            }
-        });
-    });
-    
-    // Update active link on scroll
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section[id]');
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - 200)) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
-}
+
+
+
 
 // Demo 1: Simple Message API
-function initMessageDemo() {
+function initMessage() {
     const btn = document.getElementById('testApiBtn');
     const resultBox = document.getElementById('apiResult');
     
@@ -101,7 +60,7 @@ function initMessageDemo() {
 }
 
 // Demo 2: Personalized Greeting
-function initGreetDemo() {
+function initGreet() {
     const btn = document.getElementById('greetBtn');
     const input = document.getElementById('nameInput');
     const resultBox = document.getElementById('greetResult');
@@ -163,7 +122,7 @@ function initGreetDemo() {
 }
 
 // Demo 3: Server Time
-function initTimeDemo() {
+function initTime() {
     const btn = document.getElementById('timeBtn');
     const resultBox = document.getElementById('timeResult');
     
@@ -221,7 +180,7 @@ function initTimeDemo() {
 }
 
 // Demo 4: Random Number Generator
-function initRandomDemo() {
+function initRandom() {
     const btn = document.getElementById('randomBtn');
     const minInput = document.getElementById('minInput');
     const maxInput = document.getElementById('maxInput');
@@ -294,7 +253,10 @@ function initRandomDemo() {
     });
 }
 
-// Helper Functions
+
+
+
+
 function showLoading(element, message) {
     element.className = 'result-box show loading';
     element.innerHTML = `<div style="display: flex; align-items: center; gap: 10px;">
@@ -321,9 +283,7 @@ function showError(element, message) {
     element.innerHTML = message;
 }
 
-// Add some fun interactions
 document.addEventListener('DOMContentLoaded', () => {
-    // Add hover effect to demo cards
     const demoCards = document.querySelectorAll('.demo-card');
     demoCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
