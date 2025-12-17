@@ -39,7 +39,6 @@ function initMessage() {
                         <div style="font-size: 0.9em; text-align: left;">
                             <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
                             <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
-                            <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
                             <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
                             <strong>Platform:</strong> ${data.executionInfo.platform}<br>
                             <strong>Running In:</strong> <span style="color: #667eea; font-weight: bold;">${data.executionInfo.runningIn}</span>
@@ -94,7 +93,6 @@ function initGreet() {
                         <div style="font-size: 0.9em; text-align: left;">
                             <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
                             <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
-                            <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
                             <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
                             <strong>Platform:</strong> ${data.executionInfo.platform}<br>
                             <strong>Running In:</strong> <span style="color: #10b981; font-weight: bold;">${data.executionInfo.runningIn}</span>
@@ -222,7 +220,6 @@ function initRandom() {
                             <div style="font-size: 0.9em;">
                                 <strong>Function Name:</strong> ${data.executionInfo.functionName}<br>
                                 <strong>Invocation ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">${data.executionInfo.invocationId}</code><br>
-                                <strong>Execution Time:</strong> ${data.executionInfo.executionTime}<br>
                                 <strong>Runtime:</strong> ${data.executionInfo.runtime}<br>
                                 <strong>Platform:</strong> ${data.executionInfo.platform}<br>
                                 <strong>Running In:</strong> <span style="color: #f59e0b; font-weight: bold;">${data.executionInfo.runningIn}</span>
